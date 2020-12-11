@@ -1,0 +1,25 @@
+docker build  -t ny-war .
+docker run -p 8020:8080 ny-war
+docker rm 1dde1ccf5674
+docker stop 1dde1ccf5674
+docker images
+docker ps -a
+docker rm $(docker ps -a -q -f status=exited)
+docker stop $(docker ps -a -q)
+docker image rm f01030e1dcf3
+
+kubectl create -f service.yaml
+kubectl apply --filename depl.yaml
+kubectl apply --filename service.yaml
+kubectl apply --filename service.yaml -validate=false
+
+kubectl get nodes
+kubectl get namespaces
+kubectl get pods --all-namespaces
+
+kubectl get service
+kubectl get deployment
+
+kubectl delete --all pods --namespace=default
+kubectl delete deployment ny-java-spring
+kubectl delete service sbapp-lb

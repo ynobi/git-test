@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ny-java-spring
+  namespace: default
+spec:
+ selector:
+  matchLabels:
+   app: ny-java-spring
+ replicas: 3
+ template:
+    metadata:
+      labels:
+       app: ny-java-spring
+    spec:
+      containers:
+        - name: ny-java-spring
+          image: ny-war
+	  ports:
+	  - name: ny-java-spring
+	    containerPort: 8030
+	    protocol: TCP
+	  env:
+	   - name: TARGET
+	     value: Nobi's sample
